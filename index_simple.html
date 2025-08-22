@@ -9,62 +9,140 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* 針對 iPhone 16 Pro Max 和長輩優化的設計 */
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            font-size: 18px; /* 基礎字體加大 */
+            line-height: 1.6; /* 增加行距 */
         }
+        
+        /* 支援 iOS Dynamic Type */
+        @supports (font: -apple-system-body) {
+            body {
+                font: -apple-system-body;
+                font-size: max(18px, 1.125rem);
+            }
+        }
+        
+        /* 針對大螢幕優化 */
+        @media (min-width: 430px) {
+            body {
+                font-size: 20px;
+            }
+        }
+        
         .tab-content {
             transition: all 0.3s ease-in-out;
         }
+        
+        /* 增強卡片互動效果 */
         .card-hover {
-            transition: all 0.2s ease-in-out;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px; /* iOS 風格圓角 */
         }
         .card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.1);
         }
+        
+        /* 長輩友善的公車按鈕 */
         .bus-link {
-            @apply inline-flex items-center px-6 py-4 bg-gradient-to-r from-orange-400 to-orange-500 text-white text-xl rounded-full hover:from-orange-500 hover:to-orange-600 transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:scale-110 border-3 border-orange-200 hover:border-yellow-200;
+            @apply inline-flex items-center px-8 py-5 bg-gradient-to-r from-orange-400 to-orange-500 text-white text-2xl hover:from-orange-500 hover:to-orange-600 transition-all duration-300 font-bold shadow-lg hover:shadow-xl;
             position: relative;
-            background-color: #f97316; /* 橘色底色 fallback */
-            box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.2); /* 橘色光暈底色 */
+            background-color: #f97316;
+            box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.2), 0 8px 24px rgba(0, 0, 0, 0.12);
+            min-height: 60px;
+            min-width: 120px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px; /* 明確設定圓角 */
         }
+        
         .bus-link:hover {
-            animation: pulse 1s infinite;
-            box-shadow: 0 0 0 6px rgba(251, 146, 60, 0.3), 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: gentle-pulse 2s infinite;
+            box-shadow: 0 0 0 8px rgba(251, 146, 60, 0.3), 0 12px 32px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
         }
-        @keyframes pulse {
+        
+        @keyframes gentle-pulse {
             0%, 100% { 
-                transform: scale(1.1); 
-                box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.2), 0 8px 20px rgba(0, 0, 0, 0.15);
+                transform: scale(1.05); 
+                box-shadow: 0 0 0 6px rgba(251, 146, 60, 0.25), 0 10px 28px rgba(0, 0, 0, 0.15);
             }
             50% { 
-                transform: scale(1.15); 
-                box-shadow: 0 0 0 8px rgba(251, 146, 60, 0.4), 0 12px 30px rgba(0, 0, 0, 0.25);
+                transform: scale(1.08); 
+                box-shadow: 0 0 0 10px rgba(251, 146, 60, 0.4), 0 16px 36px rgba(0, 0, 0, 0.25);
+            }
+        }
+        
+        /* 增強對比度 */
+        .high-contrast {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 2px solid #e2e8f0;
+        }
+        
+        /* 大觸控區域 */
+        .touch-target {
+            min-height: 60px; /* 超過 iOS 建議的 44pt */
+            min-width: 60px;
+            padding: 16px;
+        }
+        
+        /* 視覺焦點指示器 */
+        .focus-ring:focus {
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+            border-radius: 8px;
+        }
+        
+        /* 減少動畫對敏感用戶的影響 */
+        @media (prefers-reduced-motion: reduce) {
+            .card-hover:hover {
+                transform: none;
+            }
+            .bus-link:hover {
+                animation: none;
+                transform: none;
+            }
+        }
+        
+        /* 高對比度模式支援 */
+        @media (prefers-contrast: high) {
+            .bus-link {
+                border: 4px solid #000000;
+                background: #ff6600;
+            }
+        }
+        
+        /* 暗色模式適配 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a1a1a;
+                color: #ffffff;
             }
         }
     </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen">
 
-    <!-- Enhanced Header -->
-    <div class="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-        <div class="max-w-4xl mx-auto px-6 py-10">
+    <!-- 針對長輩優化的標題區域 -->
+    <div class="bg-gradient-to-br from-blue-50 via-white to-green-50 border-b-4 border-orange-200 shadow-lg">
+        <div class="max-w-4xl mx-auto px-8 py-12 touch-target">
             <div class="text-center">
-                <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-3">
+                <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                     🌱 三天兩夜蔬食行程
                 </h1>
-                <p class="text-xl text-gray-600 mb-4">瑞芳 → 九份 → 宜蘭</p>
-                <div class="flex justify-center space-x-6 text-sm">
-                    <span class="flex items-center text-green-600">
-                        <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                <p class="text-3xl text-gray-700 mb-8 font-medium">瑞芳 → 九份 → 宜蘭</p>
+                <div class="flex flex-wrap justify-center gap-6 text-xl">
+                    <span class="flex items-center bg-green-100 text-green-800 px-6 py-4 rounded-full font-semibold shadow-md">
+                        <span class="w-4 h-4 bg-green-500 rounded-full mr-3"></span>
                         蔬食友善
                     </span>
-                    <span class="flex items-center text-blue-600">
-                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    <span class="flex items-center bg-blue-100 text-blue-800 px-6 py-4 rounded-full font-semibold shadow-md">
+                        <span class="w-4 h-4 bg-blue-500 rounded-full mr-3"></span>
                         交通便利
                     </span>
-                    <span class="flex items-center text-purple-600">
-                        <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                    <span class="flex items-center bg-purple-100 text-purple-800 px-6 py-4 rounded-full font-semibold shadow-md">
+                        <span class="w-4 h-4 bg-purple-500 rounded-full mr-3"></span>
                         文化體驗
                     </span>
                 </div>
@@ -73,26 +151,33 @@
     </div>
 
     <div class="max-w-4xl mx-auto px-6 py-8">
-        <!-- Enhanced Tab Navigation -->
-        <div class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200 mb-8">
-            <div class="border-b border-gray-100">
+        <!-- 長輩友善的分頁導航 -->
+        <div class="bg-white rounded-2xl shadow-xl border-2 border-orange-100 mb-10 overflow-hidden">
+            <div class="bg-gradient-to-r from-orange-50 to-yellow-50 p-4">
+                <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">選擇查看天數</h2>
+                <p class="text-lg text-center text-gray-600">點擊下方按鈕查看每天的詳細行程</p>
+            </div>
+            <div class="border-b-2 border-orange-100">
                 <nav id="tabs" class="flex">
-                    <button data-tab="day1" class="tab-btn flex-1 py-5 px-6 font-semibold border-r border-gray-100 rounded-tl-xl transition-all duration-300">
+                    <button data-tab="day1" class="tab-btn flex-1 py-8 px-4 font-bold border-r-2 border-orange-100 transition-all duration-300 touch-target focus-ring">
                         <div class="flex flex-col items-center">
-                            <span class="text-2xl mb-1">🏔️</span>
-                            <span>第一天</span>
+                            <span class="text-4xl mb-3">🏔️</span>
+                            <span class="text-xl">第一天</span>
+                            <span class="text-base text-gray-600 mt-1">瑞芳→九份</span>
                         </div>
                     </button>
-                    <button data-tab="day2" class="tab-btn flex-1 py-5 px-6 font-semibold border-r border-gray-100 transition-all duration-300">
+                    <button data-tab="day2" class="tab-btn flex-1 py-8 px-4 font-bold border-r-2 border-orange-100 transition-all duration-300 touch-target focus-ring">
                         <div class="flex flex-col items-center">
-                            <span class="text-2xl mb-1">🏛️</span>
-                            <span>第二天</span>
+                            <span class="text-4xl mb-3">🏛️</span>
+                            <span class="text-xl">第二天</span>
+                            <span class="text-base text-gray-600 mt-1">博物館巡禮</span>
                         </div>
                     </button>
-                    <button data-tab="day3" class="tab-btn flex-1 py-5 px-6 font-semibold rounded-tr-xl transition-all duration-300">
+                    <button data-tab="day3" class="tab-btn flex-1 py-8 px-4 font-bold transition-all duration-300 touch-target focus-ring">
                         <div class="flex flex-col items-center">
-                            <span class="text-2xl mb-1">🎭</span>
-                            <span>第三天</span>
+                            <span class="text-4xl mb-3">🎭</span>
+                            <span class="text-xl">第三天</span>
+                            <span class="text-base text-gray-600 mt-1">傳藝文化</span>
                         </div>
                     </button>
                 </nav>
@@ -122,53 +207,63 @@
                                 瑞芳車站 → 九份老街
                             </h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 card-hover">
-                                    <div class="flex items-center mb-4">
-                                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">推薦</span>
-                                        <h4 class="font-bold text-gray-900 ml-3 text-lg">公車</h4>
-                                    </div>
-                                    <ul class="space-y-4 text-gray-700 text-lg">
-                                        <li class="flex items-start">
-                                            <span class="bg-gray-100 text-gray-700 px-3 py-2 rounded text-sm font-medium mr-4 mt-1">起點</span>
-                                            <span class="text-lg">瑞芳火車站(區民廣場)站牌</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-gray-100 text-gray-700 px-3 py-2 rounded text-sm font-medium mr-4 mt-1">路線</span>
-                                            <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
-                                                <p class="text-orange-700 font-semibold mb-3 text-lg">🚌 點擊查看公車路線：</p>
-                                                <div class="flex flex-wrap gap-3">
-                                                    <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400078800" target="_blank" class="bus-link">🚌 788 點我查詢</a>
-                                                    <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400082700" target="_blank" class="bus-link">🚌 827 點我查詢</a>
-                                                    <a href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=10620&rn=1612169853723" target="_blank" class="bus-link">🚌 1062 點我查詢</a>
-                                                    <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?rid=17937&sec=0" target="_blank" class="bus-link">🚌 965 點我查詢</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="flex items-center">
-                                            <span class="text-blue-500 mr-3 text-xl">⏱️</span>
-                                            <span class="text-lg"><strong>車程：</strong>約 15-20 分鐘</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="bg-gradient-to-br from-orange-50 to-yellow-50 border border-orange-200 rounded-xl p-6 card-hover">
-                                    <h4 class="font-bold text-gray-900 mb-4 text-xl flex items-center">
-                                        <span class="text-yellow-500 mr-3 text-2xl">🚕</span>
-                                        計程車
+                                <div class="bg-blue-50 border-4 border-blue-300 rounded-2xl p-8 card-hover">
+                                    <h4 class="text-3xl font-bold text-blue-800 mb-6 flex items-center">
+                                        🚌 公車 (推薦)
                                     </h4>
-                                    <ul class="space-y-4 text-gray-700 text-lg">
-                                        <li class="flex items-center">
-                                            <span class="text-orange-500 mr-3 text-xl">📍</span>
-                                            <span class="text-lg"><strong>搭乘處：</strong>瑞芳車站出口處</span>
-                                        </li>
-                                        <li class="flex items-center">
-                                            <span class="text-orange-500 mr-3 text-xl">⏱️</span>
-                                            <span class="text-lg"><strong>車程：</strong>約 10-15 分鐘</span>
-                                        </li>
-                                        <li class="flex items-center">
-                                            <span class="text-orange-500 mr-3 text-xl">💰</span>
-                                            <span class="text-lg"><strong>費用：</strong><span class="font-bold text-orange-600 text-xl">約 NT$205</span></span>
-                                        </li>
-                                    </ul>
+                                    
+                                    <div class="space-y-6 text-2xl text-gray-800">
+                                        <div>
+                                            <p class="font-bold mb-3">📍 起點：</p>
+                                            <p class="text-xl">瑞芳火車站(區民廣場)站牌</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <p class="font-bold mb-4 text-orange-700">🚌 點擊查看公車路線：</p>
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400078800" target="_blank" class="bus-link">🚌 788</a>
+                                                <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400082700" target="_blank" class="bus-link">🚌 827</a>
+                                                <a href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=10620&rn=1612169853723" target="_blank" class="bus-link">🚌 1062</a>
+                                                <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?rid=17937&sec=0" target="_blank" class="bus-link">🚌 965</a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-center">
+                                            <span class="text-blue-500 mr-4 text-3xl">⏱️</span>
+                                            <span class="text-xl font-bold">車程：約 15-20 分鐘</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-yellow-50 border-4 border-yellow-300 rounded-2xl p-8 card-hover">
+                                    <h4 class="text-3xl font-bold text-yellow-800 mb-6">
+                                        🚕 計程車
+                                    </h4>
+                                    
+                                    <div class="space-y-6 text-2xl text-gray-800">
+                                        <div class="flex items-center">
+                                            <span class="text-orange-500 mr-4 text-3xl">📍</span>
+                                            <div>
+                                                <p class="font-bold">搭乘處：</p>
+                                                <p class="text-xl">瑞芳車站出口處</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-center">
+                                            <span class="text-orange-500 mr-4 text-3xl">⏱️</span>
+                                            <div>
+                                                <p class="font-bold">車程：</p>
+                                                <p class="text-xl">約 10-15 分鐘</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-center">
+                                            <span class="text-orange-500 mr-4 text-3xl">💰</span>
+                                            <div>
+                                                <p class="font-bold">費用：</p>
+                                                <p class="text-2xl font-bold text-orange-600">約 NT$205</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -180,70 +275,77 @@
                                 蔬食美食推薦
                             </h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6 card-hover">
-                                    <div class="flex items-center mb-4">
-                                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">瑞芳車站附近</span>
-                                    </div>
-                                    <p class="text-lg text-green-700 mb-6 font-medium">💡 建議先在此用餐，選擇較多且方便</p>
-                                    <ul class="space-y-4">
-                                        <li>
-                                            <a href="https://maps.app.goo.gl/Thc5DYGjfdPocoqQA" target="_blank" class="flex items-center p-4 bg-white rounded-lg hover:bg-gray-50 transition-colors border border-green-100">
-                                                <span class="text-2xl mr-4">🌿</span>
-                                                <div>
-                                                    <h5 class="font-semibold text-gray-900 text-xl">悠栽蔬食</h5>
-                                                    <p class="text-lg text-gray-600">純素料理專門店</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://maps.app.goo.gl/YvBeVLTQPf5RN86P7" target="_blank" class="flex items-center p-4 bg-white rounded-lg hover:bg-gray-50 transition-colors border border-green-100">
-                                                <span class="text-2xl mr-4">🍃</span>
-                                                <div>
-                                                    <h5 class="font-semibold text-gray-900 text-xl">田園餐坊</h5>
-                                                    <p class="text-lg text-gray-600">素食家常菜</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6 card-hover">
-                                    <div class="flex items-center mb-4">
-                                        <span class="bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-semibold">九份老街</span>
-                                    </div>
-                                    <p class="text-lg text-amber-700 mb-6 font-medium">🏮 山城特色蔬食小吃</p>
-                                    <ul class="space-y-4">
-                                        <li>
-                                            <a href="https://maps.app.goo.gl/zTfRJL2ohqNPShKVA" target="_blank" class="flex items-center p-4 bg-white rounded-lg hover:bg-gray-50 transition-colors border border-amber-100">
-                                                <span class="text-2xl mr-4">🍜</span>
-                                                <div>
-                                                    <h5 class="font-semibold text-gray-900 text-xl">慈鴻素食</h5>
-                                                    <p class="text-lg text-gray-600">傳統素食料理</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://maps.app.goo.gl/cLDFb9dRnNXa2pE6A" target="_blank" class="flex items-center p-4 bg-white rounded-lg hover:bg-gray-50 transition-colors border border-amber-100">
-                                                <span class="text-2xl mr-4">🍡</span>
-                                                <div>
-                                                    <h5 class="font-semibold text-gray-900 text-xl">金枝紅糟素肉圓</h5>
-                                                    <p class="text-lg text-gray-600">九份特色小吃</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                                <div class="bg-green-50 border-4 border-green-300 rounded-2xl p-8 card-hover">
+                                    <h4 class="text-3xl font-bold text-green-800 mb-6">
+                                        🌿 瑞芳車站附近
+                                    </h4>
+                                    
+                                    <p class="text-2xl text-green-700 mb-8 font-bold">💡 建議先在此用餐，選擇較多且方便</p>
+                                    
+                                    <div class="space-y-6">
+                                        <a href="https://maps.app.goo.gl/Thc5DYGjfdPocoqQA" target="_blank" class="block bg-white rounded-2xl p-6 hover:bg-green-100 transition-colors border-4 border-green-200 hover:border-green-400">
                                             <div class="flex items-center">
-                                                <span class="text-2xl mr-4">🍠</span>
+                                                <span class="text-4xl mr-6">🌿</span>
                                                 <div>
-                                                    <h5 class="font-semibold text-gray-900 text-xl">芋圓名店</h5>
-                                                    <p class="text-lg text-gray-600">
-                                                        <a href="https://www.google.com/maps/search/?api=1&query=新北市瑞芳區基山街143號" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-semibold">賴阿婆芋圓</a> / 
-                                                        <a href="https://www.google.com/maps/search/?api=1&query=新北市瑞芳區豎崎路5號" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-semibold">阿柑姨芋圓</a>
-                                                        <br><span class="text-base">選擇非奶製配料</span>
-                                                    </p>
+                                                    <h5 class="font-bold text-gray-900 text-2xl mb-2">悠栽蔬食</h5>
+                                                    <p class="text-xl text-gray-700">純素料理專門店</p>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ul>
+                                        </a>
+                                        
+                                        <a href="https://maps.app.goo.gl/YvBeVLTQPf5RN86P7" target="_blank" class="block bg-white rounded-2xl p-6 hover:bg-green-100 transition-colors border-4 border-green-200 hover:border-green-400">
+                                            <div class="flex items-center">
+                                                <span class="text-4xl mr-6">🍃</span>
+                                                <div>
+                                                    <h5 class="font-bold text-gray-900 text-2xl mb-2">田園餐坊</h5>
+                                                    <p class="text-xl text-gray-700">素食家常菜</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="bg-amber-50 border-4 border-amber-300 rounded-2xl p-8 card-hover">
+                                    <h4 class="text-3xl font-bold text-amber-800 mb-6">
+                                        🏮 九份老街
+                                    </h4>
+                                    
+                                    <p class="text-2xl text-amber-700 mb-8 font-bold">🏮 山城特色蔬食小吃</p>
+                                    
+                                    <div class="space-y-6">
+                                        <a href="https://maps.app.goo.gl/zTfRJL2ohqNPShKVA" target="_blank" class="block bg-white rounded-2xl p-6 hover:bg-amber-100 transition-colors border-4 border-amber-200 hover:border-amber-400">
+                                            <div class="flex items-center">
+                                                <span class="text-4xl mr-6">🍜</span>
+                                                <div>
+                                                    <h5 class="font-bold text-gray-900 text-2xl mb-2">慈鴻素食</h5>
+                                                    <p class="text-xl text-gray-700">傳統素食料理</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://maps.app.goo.gl/cLDFb9dRnNXa2pE6A" target="_blank" class="block bg-white rounded-2xl p-6 hover:bg-amber-100 transition-colors border-4 border-amber-200 hover:border-amber-400">
+                                            <div class="flex items-center">
+                                                <span class="text-4xl mr-6">🍡</span>
+                                                <div>
+                                                    <h5 class="font-bold text-gray-900 text-2xl mb-2">金枝紅糟素肉圓</h5>
+                                                    <p class="text-xl text-gray-700">九份特色小吃</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        
+                                        <div class="bg-yellow-100 rounded-2xl p-6 border-4 border-yellow-300">
+                                            <div class="flex items-center">
+                                                <span class="text-4xl mr-6">🍠</span>
+                                                <div>
+                                                    <h5 class="font-bold text-gray-900 text-2xl mb-3">芋圓名店</h5>
+                                                    <div class="space-y-3">
+                                                        <a href="https://www.google.com/maps/search/?api=1&query=新北市瑞芳區基山街143號" target="_blank" class="block text-blue-600 hover:text-blue-800 underline font-bold text-xl">📍 賴阿婆芋圓</a>
+                                                        <a href="https://www.google.com/maps/search/?api=1&query=新北市瑞芳區豎崎路5號" target="_blank" class="block text-blue-600 hover:text-blue-800 underline font-bold text-xl">📍 阿柑姨芋圓</a>
+                                                        <p class="text-lg text-gray-700 font-medium">⚠️ 選擇非奶製配料</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -254,32 +356,36 @@
                                 <span class="bg-purple-100 text-purple-600 p-3 rounded-lg mr-4">🏠</span>
                                 今晚住宿
                             </h3>
-                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-6 card-hover">
-                                <div class="flex items-center justify-between mb-6">
-                                    <h4 class="font-bold text-gray-900 text-2xl">九份惠風民宿</h4>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=新北市瑞芳區街頂巷41號" target="_blank" class="bg-purple-500 text-white px-6 py-3 rounded-lg text-lg hover:bg-purple-600 transition-colors font-medium">
-                                        📍 查看位置
+                            <div class="bg-purple-50 border-4 border-purple-300 rounded-2xl p-8 card-hover">
+                                <h4 class="text-3xl font-bold text-purple-800 mb-6">
+                                    🏠 九份惠風民宿
+                                </h4>
+                                
+                                <div class="mb-8">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=新北市瑞芳區街頂巷41號" target="_blank" class="block bg-purple-500 text-white px-8 py-4 rounded-2xl text-2xl hover:bg-purple-600 transition-colors font-bold text-center shadow-lg">
+                                        📍 點我查看位置
                                     </a>
                                 </div>
-                                <div class="bg-blue-50 rounded-lg p-5 border border-blue-200">
-                                    <h5 class="font-semibold text-blue-800 mb-4 flex items-center text-xl">
-                                        <span class="mr-3 text-2xl">🗺️</span>
+                                
+                                <div class="bg-blue-100 rounded-2xl p-6 border-4 border-blue-300">
+                                    <h5 class="font-bold text-blue-800 mb-6 text-2xl flex items-center">
+                                        <span class="mr-4 text-3xl">🗺️</span>
                                         前往方式
                                     </h5>
-                                    <ul class="text-lg text-blue-700 space-y-3">
-                                        <li class="flex items-start">
-                                            <span class="mr-3 mt-1">•</span>
-                                            <span>抵達「九份老街」公車站後步行前往</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="mr-3 mt-1">•</span>
-                                            <span><strong>建議出發前先與民宿老闆聯繫</strong>確認路線</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="mr-3 mt-1">•</span>
-                                            <span>九份多為階梯小巷，請留意行李重量</span>
-                                        </li>
-                                    </ul>
+                                    <div class="space-y-4 text-xl text-blue-800">
+                                        <div class="flex items-start">
+                                            <span class="mr-4 mt-1 text-2xl">1️⃣</span>
+                                            <span class="font-medium">抵達「九份老街」公車站後步行前往</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-4 mt-1 text-2xl">2️⃣</span>
+                                            <span class="font-bold">建議出發前先與民宿老闆聯繫確認路線</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-4 mt-1 text-2xl">⚠️</span>
+                                            <span class="font-medium">九份多為階梯小巷，請留意行李重量</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -309,26 +415,26 @@
                                 <span class="bg-yellow-100 text-yellow-600 p-3 rounded-lg mr-4">🚌</span>
                                 九份 → 黃金博物館
                             </h3>
-                            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 border border-yellow-200 rounded-xl p-6 card-hover">
-                                <ul class="space-y-4 text-gray-700 text-lg">
-                                    <li class="flex items-start">
-                                        <span class="bg-yellow-500 text-white px-3 py-2 rounded text-sm font-medium mr-4 mt-1">路線</span>
-                                        <div class="text-lg">
-                                            <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
-                                                <p class="text-orange-700 font-semibold mb-3 text-lg">🚌 在「九份老街」站牌搭乘往金瓜石方向：</p>
-                                                <div class="flex flex-wrap gap-3">
-                                                    <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400078800" target="_blank" class="bus-link">🚌 788 點我查詢</a>
-                                                    <a href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=10620&rn=1612169853723" target="_blank" class="bus-link">🚌 1062 點我查詢</a>
-                                                    <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?rid=17937&sec=0" target="_blank" class="bus-link">🚌 965 點我查詢</a>
-                                                </div>
-                                            </div>
+                            <div class="bg-yellow-50 border-4 border-yellow-300 rounded-2xl p-8 card-hover">
+                                <h4 class="text-3xl font-bold text-yellow-800 mb-6">
+                                    🚌 九份 → 黃金博物館
+                                </h4>
+                                
+                                <div class="space-y-6 text-2xl text-gray-800">
+                                    <div>
+                                        <p class="font-bold mb-4 text-orange-700">🚌 在「九份老街」站牌搭乘往金瓜石方向：</p>
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400078800" target="_blank" class="bus-link">🚌 788</a>
+                                            <a href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=10620&rn=1612169853723" target="_blank" class="bus-link">🚌 1062</a>
+                                            <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?rid=17937&sec=0" target="_blank" class="bus-link">🚌 965</a>
                                         </div>
-                                    </li>
-                                    <li class="flex items-center">
-                                        <span class="text-yellow-500 mr-3 text-xl">⏱️</span>
-                                        <span class="text-lg"><strong>車程：</strong>約 10 分鐘</span>
-                                    </li>
-                                </ul>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <span class="text-yellow-500 mr-4 text-3xl">⏱️</span>
+                                        <span class="text-xl font-bold">車程：約 10 分鐘</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -337,36 +443,49 @@
                                 <span class="bg-green-100 text-green-600 p-3 rounded-lg mr-4">🚄</span>
                                 黃金博物館 → 蘭陽博物館
                             </h3>
-                            <div class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6 card-hover">
-                                <ol class="space-y-5 text-gray-700 text-lg">
-                                    <li class="flex items-start">
-                                        <span class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold mr-4 mt-1">1</span>
-                                        <span class="text-lg">黃金博物館搭公車返回瑞芳車站</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold mr-4 mt-1">2</span>
-                                        <span class="text-lg">瑞芳車站搭臺鐵至頭城車站 <span class="text-green-600 font-semibold text-xl">(約 40-60 分鐘)</span></span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold mr-4 mt-1">3</span>
+                            <div class="bg-green-50 border-4 border-green-300 rounded-2xl p-8 card-hover">
+                                <h4 class="text-3xl font-bold text-green-800 mb-6">
+                                    🚄 黃金博物館 → 蘭陽博物館
+                                </h4>
+                                
+                                <div class="space-y-8 text-2xl text-gray-800">
+                                    <div class="flex items-start">
+                                        <span class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold mr-6 mt-1">1</span>
                                         <div>
-                                            <span class="font-semibold text-lg">頭城車站至蘭陽博物館：</span>
-                                            <ul class="ml-6 mt-3 space-y-3 text-lg">
-                                                <li>
-                                                    <div class="bg-orange-50 p-3 rounded-lg border border-orange-200">
-                                                        <div class="flex items-center mb-2">
-                                                            <span class="bg-green-100 text-green-700 px-3 py-2 rounded text-sm font-medium mr-3">推薦</span>
-                                                            <span class="text-orange-700 font-semibold text-lg">🚌 台灣好行路線：</span>
-                                                        </div>
-                                                        <a href="https://www.taiwantrip.com.tw/line/65?type=runtime" target="_blank" class="bus-link">🚌 台灣好行綠19 點我查詢</a>
-                                                    </div>
-                                                </li>
-                                                <li class="text-lg">• 步行約 15-20 分鐘</li>
-                                                <li class="text-lg">• 計程車約 5 分鐘</li>
-                                            </ul>
+                                            <p class="font-bold text-xl">黃金博物館搭公車返回瑞芳車站</p>
                                         </div>
-                                    </li>
-                                </ol>
+                                    </div>
+                                    
+                                    <div class="flex items-start">
+                                        <span class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold mr-6 mt-1">2</span>
+                                        <div>
+                                            <p class="font-bold text-xl">瑞芳車站搭臺鐵至頭城車站</p>
+                                            <p class="text-green-600 font-bold text-2xl mt-2">(約 40-60 分鐘)</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start">
+                                        <span class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold mr-6 mt-1">3</span>
+                                        <div class="w-full">
+                                            <p class="font-bold text-xl mb-4">頭城車站至蘭陽博物館：</p>
+                                            
+                                            <div class="space-y-4">
+                                                <div class="bg-orange-100 p-6 rounded-2xl border-4 border-orange-300">
+                                                    <div class="flex items-center mb-4">
+                                                        <span class="bg-green-500 text-white px-4 py-2 rounded-full text-lg font-bold">推薦</span>
+                                                        <span class="text-orange-700 font-bold text-xl ml-4">🚌 台灣好行路線：</span>
+                                                    </div>
+                                                    <a href="https://www.taiwantrip.com.tw/line/65?type=runtime" target="_blank" class="bus-link">🚌 台灣好行綠19</a>
+                                                </div>
+                                                
+                                                <div class="bg-gray-100 p-4 rounded-xl">
+                                                    <p class="text-xl font-medium">• 步行約 15-20 分鐘</p>
+                                                    <p class="text-xl font-medium">• 計程車約 5 分鐘</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -375,17 +494,28 @@
                                 <span class="bg-blue-100 text-blue-600 p-3 rounded-lg mr-4">🚄</span>
                                 蘭陽博物館 → 羅東
                             </h3>
-                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 card-hover">
-                                <ul class="space-y-4 text-gray-700 text-lg">
-                                    <li class="flex items-center">
-                                        <span class="text-blue-500 mr-3 text-xl">🗺️</span>
-                                        <span class="text-lg"><strong>路線：</strong>蘭陽博物館 → 頭城車站 → 羅東車站</span>
-                                    </li>
-                                    <li class="flex items-center">
-                                        <span class="text-blue-500 mr-3 text-xl">⏱️</span>
-                                        <span class="text-lg"><strong>車程：</strong>頭城到羅東約 20-30 分鐘</span>
-                                    </li>
-                                </ul>
+                            <div class="bg-blue-50 border-4 border-blue-300 rounded-2xl p-8 card-hover">
+                                <h4 class="text-3xl font-bold text-blue-800 mb-6">
+                                    🚄 蘭陽博物館 → 羅東
+                                </h4>
+                                
+                                <div class="space-y-6 text-2xl text-gray-800">
+                                    <div class="flex items-center">
+                                        <span class="text-blue-500 mr-4 text-3xl">🗺️</span>
+                                        <div>
+                                            <p class="font-bold">路線：</p>
+                                            <p class="text-xl">蘭陽博物館 → 頭城車站 → 羅東車站</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <span class="text-blue-500 mr-4 text-3xl">⏱️</span>
+                                        <div>
+                                            <p class="font-bold">車程：</p>
+                                            <p class="text-xl">頭城到羅東約 20-30 分鐘</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -395,12 +525,20 @@
                                 <span class="bg-purple-100 text-purple-600 p-3 rounded-lg mr-4">🏨</span>
                                 今晚住宿
                             </h3>
-                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-6 card-hover">
-                                <h4 class="font-bold text-gray-900 text-2xl mb-4">Lai Dua 羅東民宿</h4>
-                                <p class="text-gray-700 flex items-center text-lg">
-                                    <span class="text-purple-500 mr-3 text-xl">💡</span>
-                                    從羅東車站搭乘計程車前往最為便利，也可查詢公車路線。
-                                </p>
+                            <div class="bg-purple-50 border-4 border-purple-300 rounded-2xl p-8 card-hover">
+                                <h4 class="text-3xl font-bold text-purple-800 mb-6">
+                                    🏨 Lai Dua 羅東民宿
+                                </h4>
+                                
+                                <div class="bg-purple-100 rounded-2xl p-6 border-4 border-purple-300">
+                                    <div class="flex items-center">
+                                        <span class="text-purple-500 mr-4 text-3xl">💡</span>
+                                        <div>
+                                            <p class="font-bold text-xl text-purple-800">前往方式：</p>
+                                            <p class="text-xl text-gray-800">從羅東車站搭乘計程車前往最為便利，也可查詢公車路線。</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -427,41 +565,47 @@
                                 <span class="bg-red-100 text-red-600 p-3 rounded-lg mr-4">🚌</span>
                                 羅東 → 傳藝中心
                             </h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6 card-hover">
-                                    <div class="flex items-center mb-4">
-                                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">推薦</span>
-                                        <h4 class="font-bold text-gray-900 ml-3 text-xl">台灣好行</h4>
-                                    </div>
-                                    <ul class="space-y-4 text-gray-700 text-lg">
-                                        <li class="flex items-start">
-                                            <span class="bg-green-100 text-green-700 px-3 py-2 rounded text-sm font-medium mr-4 mt-1">路線</span>
-                                            <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
-                                                <p class="text-orange-700 font-semibold mb-3 text-lg">🚌 台灣好行路線：</p>
-                                                <a href="https://www.capital-bus.com.tw/image/lineimage.php?imagetest=260" target="_blank" class="bus-link">🚌 冬山河線 (綠21) 點我查詢</a>
-                                            </div>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-green-100 text-green-700 px-3 py-2 rounded text-sm font-medium mr-4 mt-1">起點</span>
-                                            <span class="text-lg">羅東火車站後站或羅東轉運站</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="bg-gradient-to-br from-orange-50 to-yellow-50 border border-orange-200 rounded-xl p-6 card-hover">
-                                    <h4 class="font-bold text-gray-900 mb-4 text-xl flex items-center">
-                                        <span class="text-yellow-500 mr-3 text-2xl">🚕</span>
-                                        計程車
+                            <div class="space-y-8">
+                                <div class="bg-green-50 border-4 border-green-300 rounded-2xl p-8 card-hover">
+                                    <h4 class="text-3xl font-bold text-green-800 mb-6 flex items-center">
+                                        🚌 台灣好行 (推薦)
                                     </h4>
-                                    <ul class="space-y-4 text-gray-700 text-lg">
-                                        <li class="flex items-center">
-                                            <span class="text-orange-500 mr-3 text-xl">⏱️</span>
-                                            <span class="text-lg"><strong>車程：</strong>約 15 分鐘</span>
-                                        </li>
-                                        <li class="flex items-center">
-                                            <span class="text-orange-500 mr-3 text-xl">💰</span>
-                                            <span class="text-lg"><strong>費用：</strong><span class="font-bold text-orange-600 text-xl">約 NT$200</span></span>
-                                        </li>
-                                    </ul>
+                                    
+                                    <div class="space-y-6 text-2xl text-gray-800">
+                                        <div>
+                                            <p class="font-bold mb-3">📍 起點：</p>
+                                            <p class="text-xl">羅東火車站後站或羅東轉運站</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <p class="font-bold mb-4 text-orange-700">🚌 台灣好行路線：</p>
+                                            <a href="https://www.capital-bus.com.tw/image/lineimage.php?imagetest=260" target="_blank" class="bus-link">🚌 冬山河線 (綠21)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-yellow-50 border-4 border-yellow-300 rounded-2xl p-8 card-hover">
+                                    <h4 class="text-3xl font-bold text-yellow-800 mb-6">
+                                        🚕 計程車
+                                    </h4>
+                                    
+                                    <div class="space-y-6 text-2xl text-gray-800">
+                                        <div class="flex items-center">
+                                            <span class="text-orange-500 mr-4 text-3xl">⏱️</span>
+                                            <div>
+                                                <p class="font-bold">車程：</p>
+                                                <p class="text-xl">約 15 分鐘</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-center">
+                                            <span class="text-orange-500 mr-4 text-3xl">💰</span>
+                                            <div>
+                                                <p class="font-bold">費用：</p>
+                                                <p class="text-2xl font-bold text-orange-600">約 NT$200</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -471,25 +615,36 @@
                                 <span class="bg-gray-100 text-gray-600 p-3 rounded-lg mr-4">🚂</span>
                                 傳藝中心 → 返程
                             </h3>
-                            <div class="bg-gradient-to-br from-gray-50 to-slate-50 border border-gray-200 rounded-xl p-6 card-hover">
-                                <ul class="space-y-4 text-gray-700 text-lg">
-                                    <li class="flex items-center">
-                                        <span class="text-gray-500 mr-3 text-xl">🔄</span>
-                                        <div class="text-lg">
-                                            <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
-                                                <p class="text-orange-700 font-semibold mb-3 text-lg"><strong>🚌 返回羅東：</strong></p>
-                                                <div class="flex flex-wrap gap-3 items-center">
-                                                    <a href="https://www.capital-bus.com.tw/image/lineimage.php?imagetest=260" target="_blank" class="bus-link">🚌 台灣好行冬山河線 (綠21) 點我查詢</a>
-                                                    <span class="text-lg text-gray-700">或計程車</span>
-                                                </div>
-                                            </div>
+                            <div class="bg-gray-50 border-4 border-gray-300 rounded-2xl p-8 card-hover">
+                                <h4 class="text-3xl font-bold text-gray-800 mb-6">
+                                    🚂 傳藝中心 → 返程
+                                </h4>
+                                
+                                <div class="space-y-8 text-2xl text-gray-800">
+                                    <div>
+                                        <div class="flex items-center mb-4">
+                                            <span class="text-gray-500 mr-4 text-3xl">🔄</span>
+                                            <p class="font-bold text-xl">返回羅東：</p>
                                         </div>
-                                    </li>
-                                    <li class="flex items-center">
-                                        <span class="text-gray-500 mr-3 text-xl">🚄</span>
-                                        <span class="text-lg"><strong>從羅東車站：</strong>搭乘臺鐵返回出發地</span>
-                                    </li>
-                                </ul>
+                                        
+                                        <div class="bg-orange-100 p-6 rounded-2xl border-4 border-orange-300 mb-4">
+                                            <p class="text-orange-700 font-bold mb-4 text-xl">🚌 台灣好行路線：</p>
+                                            <a href="https://www.capital-bus.com.tw/image/lineimage.php?imagetest=260" target="_blank" class="bus-link">🚌 台灣好行冬山河線 (綠21)</a>
+                                        </div>
+                                        
+                                        <div class="bg-yellow-100 p-4 rounded-xl">
+                                            <p class="text-xl font-medium text-gray-700">或搭乘計程車</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <span class="text-gray-500 mr-4 text-3xl">🚄</span>
+                                        <div>
+                                            <p class="font-bold">從羅東車站：</p>
+                                            <p class="text-xl">搭乘臺鐵返回出發地</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -499,26 +654,49 @@
                                 <span class="bg-red-100 text-red-600 p-3 rounded-lg mr-4">🎨</span>
                                 傳藝中心體驗
                             </h3>
-                            <div class="bg-gradient-to-br from-red-50 to-pink-50 border border-red-200 rounded-xl p-6 card-hover">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                    <div class="space-y-4">
-                                        <div class="flex items-center p-4 bg-white rounded-lg border border-red-100">
-                                            <span class="text-2xl mr-4">🎭</span>
-                                            <span class="font-semibold text-gray-900 text-lg">傳統工藝展示與體驗</span>
-                                        </div>
-                                        <div class="flex items-center p-4 bg-white rounded-lg border border-red-100">
-                                            <span class="text-2xl mr-4">🎪</span>
-                                            <span class="font-semibold text-gray-900 text-lg">文化表演欣賞</span>
+                            <div class="bg-red-50 border-4 border-red-300 rounded-2xl p-8 card-hover">
+                                <h4 class="text-3xl font-bold text-red-800 mb-6">
+                                    🎨 傳藝中心體驗
+                                </h4>
+                                
+                                <div class="space-y-6">
+                                    <div class="bg-white rounded-2xl p-6 border-4 border-red-200">
+                                        <div class="flex items-center">
+                                            <span class="text-4xl mr-6">🎭</span>
+                                            <div>
+                                                <h5 class="font-bold text-gray-900 text-2xl mb-2">傳統工藝展示與體驗</h5>
+                                                <p class="text-xl text-gray-700">親手體驗台灣傳統工藝製作</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="space-y-4">
-                                        <div class="flex items-center p-4 bg-white rounded-lg border border-red-100">
-                                            <span class="text-2xl mr-4">✋</span>
-                                            <span class="font-semibold text-gray-900 text-lg">手作工藝體驗課程</span>
+                                    
+                                    <div class="bg-white rounded-2xl p-6 border-4 border-red-200">
+                                        <div class="flex items-center">
+                                            <span class="text-4xl mr-6">🎪</span>
+                                            <div>
+                                                <h5 class="font-bold text-gray-900 text-2xl mb-2">文化表演欣賞</h5>
+                                                <p class="text-xl text-gray-700">欣賞精彩的傳統藝術表演</p>
+                                            </div>
                                         </div>
-                                        <div class="flex items-center p-4 bg-white rounded-lg border border-red-100">
-                                            <span class="text-2xl mr-4">🏛️</span>
-                                            <span class="font-semibold text-gray-900 text-lg">傳統建築巡禮</span>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-2xl p-6 border-4 border-red-200">
+                                        <div class="flex items-center">
+                                            <span class="text-4xl mr-6">✋</span>
+                                            <div>
+                                                <h5 class="font-bold text-gray-900 text-2xl mb-2">手作工藝體驗課程</h5>
+                                                <p class="text-xl text-gray-700">參與互動式工藝製作課程</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-2xl p-6 border-4 border-red-200">
+                                        <div class="flex items-center">
+                                            <span class="text-4xl mr-6">🏛️</span>
+                                            <div>
+                                                <h5 class="font-bold text-gray-900 text-2xl mb-2">傳統建築巡禮</h5>
+                                                <p class="text-xl text-gray-700">探索台灣古典建築之美</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -531,51 +709,122 @@
     </div>
 
     <script>
-        // Simple Tab Functionality
+        // 針對長輩優化的分頁功能
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
 
         function switchTab(tabId) {
-            // Hide all content
+            // 隱藏所有內容
             tabContents.forEach(content => {
                 content.classList.add('hidden');
+                content.style.opacity = '0';
             });
 
-            // Reset all buttons
+            // 重置所有按鈕樣式
             tabButtons.forEach(button => {
-                button.classList.remove('bg-blue-500', 'text-white');
-                button.classList.add('text-gray-700', 'hover:text-gray-900', 'hover:bg-gray-50');
+                button.classList.remove('bg-gradient-to-r', 'from-orange-400', 'to-orange-500', 'text-white', 'shadow-lg', 'scale-105');
+                button.classList.add('text-gray-700', 'hover:text-gray-900', 'hover:bg-orange-50', 'bg-white');
             });
 
-            // Show target content
+            // 顯示目標內容
             const targetContent = document.getElementById(tabId);
             const targetButton = document.querySelector(`[data-tab="${tabId}"]`);
 
             if (targetContent) {
                 targetContent.classList.remove('hidden');
+                // 平滑顯示動畫
+                setTimeout(() => {
+                    targetContent.style.opacity = '1';
+                }, 100);
+                
+                // 滾動到頂部，方便長輩閱讀
+                targetContent.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
             }
 
-            // Activate target button
+            // 激活目標按鈕
             if (targetButton) {
-                targetButton.classList.add('bg-blue-500', 'text-white');
-                targetButton.classList.remove('text-gray-700', 'hover:text-gray-900', 'hover:bg-gray-50');
+                targetButton.classList.add('bg-gradient-to-r', 'from-orange-400', 'to-orange-500', 'text-white', 'shadow-lg', 'scale-105');
+                targetButton.classList.remove('text-gray-700', 'hover:text-gray-900', 'hover:bg-orange-50', 'bg-white');
+                
+                // 提供觸覺回饋（如果支援）
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(50);
+                }
             }
         }
 
-        // Add click event listeners
+        // 增強的點擊事件處理
         tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
                 const tabId = button.dataset.tab;
                 if (tabId) {
-                    switchTab(tabId);
+                    // 視覺回饋
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = '';
+                        switchTab(tabId);
+                    }, 150);
+                }
+            });
+
+            // 鍵盤導航支援
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const tabId = button.dataset.tab;
+                    if (tabId) {
+                        switchTab(tabId);
+                    }
                 }
             });
         });
 
-        // Initialize first tab
+        // 支援 iOS Dynamic Type 變化
+        if ('matchMedia' in window) {
+            const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            mediaQuery.addListener((e) => {
+                if (e.matches) {
+                    // 如果用戶偏好減少動畫，移除所有過渡效果
+                    document.documentElement.style.setProperty('--transition-duration', '0s');
+                }
+            });
+        }
+
+        // 初始化第一個分頁
         document.addEventListener('DOMContentLoaded', () => {
             switchTab('day1');
+            
+            // 為所有外部連結添加安全屬性
+            const externalLinks = document.querySelectorAll('a[target="_blank"]');
+            externalLinks.forEach(link => {
+                link.rel = 'noopener noreferrer';
+                
+                // 為長輩添加確認提示
+                link.addEventListener('click', (e) => {
+                    const confirmMessage = `即將開啟外部網站：\n${link.textContent}\n\n確定要繼續嗎？`;
+                    if (!confirm(confirmMessage)) {
+                        e.preventDefault();
+                    }
+                });
+            });
         });
+
+        // 支援語音朗讀（如果需要）
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-TW';
+                utterance.rate = 0.8; // 較慢的語速適合長輩
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        // 添加平滑滾動行為
+        document.documentElement.style.scrollBehavior = 'smooth';
     </script>
 
 </body>
