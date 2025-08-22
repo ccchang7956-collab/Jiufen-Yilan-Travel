@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三天兩夜蔬食行程規劃</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Use Noto Sans TC for Traditional Chinese and Inter for other text */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        }
+        /* Simple transition for tab content */
+        .tab-content {
+            transition: opacity 0.3s ease-in-out;
+        }
+        /* Custom style for bus links */
+        .bus-link {
+            @apply inline-flex items-center underline text-blue-600 hover:text-blue-800 transition-colors font-semibold;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
+
+    <div class="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div class="p-6 sm:p-8 bg-slate-50 border-b border-slate-200">
+            <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">您的三天兩夜蔬食行程</h1>
+            <p class="mt-2 text-slate-600">瑞芳 / 九份 / 宜蘭 蔬食友善之旅</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="p-4 sm:p-6 border-b border-slate-200">
+            <div id="tabs" class="flex flex-wrap gap-2 sm:gap-4">
+                <button data-tab="day1" class="tab-btn flex-1 sm:flex-auto text-sm sm:text-base font-semibold py-3 px-4 rounded-lg transition-colors duration-300">第一天</button>
+                <button data-tab="day2" class="tab-btn flex-1 sm:flex-auto text-sm sm:text-base font-semibold py-3 px-4 rounded-lg transition-colors duration-300">第二天</button>
+                <button data-tab="day3" class="tab-btn flex-1 sm:flex-auto text-sm sm:text-base font-semibold py-3 px-4 rounded-lg transition-colors duration-300">第三天</button>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="p-6 sm:p-8">
+            <!-- Day 1 Content -->
+            <div id="day1" class="tab-content">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-6">📍 第一天：瑞芳車站 → 九份老街</h2>
+                <div class="space-y-8">
+                    <!-- Transportation Section -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">🚗</span> 交通方式
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800">公車 (Bus)</h4>
+                                <ul class="mt-2 list-disc list-inside text-slate-600 space-y-1">
+                                    <li><strong class="text-slate-700">搭乘處：</strong> 在瑞芳車站對面的「瑞芳火車站(區民廣場)」站牌。</li>
+                                    <li><strong class="text-slate-700">路線：</strong> 
+                                        <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400078800" target="_blank" rel="noopener noreferrer" class="bus-link">788<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>、
+                                        <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400082700" target="_blank" rel="noopener noreferrer" class="bus-link">827<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>、
+                                        <a href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=10620&rn=1612169853723" target="_blank" rel="noopener noreferrer" class="bus-link">1062<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>、
+                                        <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?rid=17937&sec=0" target="_blank" rel="noopener noreferrer" class="bus-link">965<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                                    </li>
+                                    <li><strong class="text-slate-700">車程：</strong> 約 15-20 分鐘</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800">計程車 (Taxi)</h4>
+                                <ul class="mt-2 list-disc list-inside text-slate-600 space-y-1">
+                                    <li><strong class="text-slate-700">搭乘處：</strong> 瑞芳車站出口處有排班計程車。</li>
+                                    <li><strong class="text-slate-700">車程：</strong> 約 10-15 分鐘</li>
+                                    <li><strong class="text-slate-700">費用：</strong> 公定價約 NT$205</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Food Section -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">🥗</span> 蔬食推薦
+                        </h3>
+                        <div class="bg-green-50 p-5 rounded-lg border border-green-200 space-y-4">
+                            <div>
+                                <h4 class="font-bold text-green-900">瑞芳車站附近</h4>
+                                <p class="text-sm text-green-800 mb-2">上九份前可先在此用餐，選擇較多。</p>
+                                <ul class="list-disc list-inside text-green-700 space-y-2">
+                                    <li><strong class="text-green-800"><a href="https://maps.app.goo.gl/Thc5DYGjfdPocoqQA" target="_blank" rel="noopener noreferrer" class="underline hover:text-green-600">悠栽蔬食</a></strong></li>
+                                    <li><strong class="text-green-800"><a href="https://maps.app.goo.gl/YvBeVLTQPf5RN86P7" target="_blank" rel="noopener noreferrer" class="underline hover:text-green-600">田園餐坊 (素食)</a></strong></li>
+                                </ul>
+                            </div>
+                            <hr class="border-green-200">
+                            <div>
+                                <h4 class="font-bold text-green-900">九份老街</h4>
+                                <p class="text-sm text-green-800 mb-2">以特色小吃為主。</p>
+                                <ul class="list-disc list-inside text-green-700 space-y-2">
+                                    <li><strong class="text-green-800"><a href="https://maps.app.goo.gl/zTfRJL2ohqNPShKVA" target="_blank" rel="noopener noreferrer" class="underline hover:text-green-600">慈鴻素食</a></strong></li>
+                                    <li><strong class="text-green-800"><a href="https://maps.app.goo.gl/cLDFb9dRnNXa2pE6A" target="_blank" rel="noopener noreferrer" class="underline hover:text-green-600">金枝紅糟素肉圓</a></strong></li>
+                                    <li><strong class="text-green-800"><a href="https://maps.app.goo.gl/2h3TCFNzGoLCgXQf6" target="_blank" rel="noopener noreferrer" class="underline hover:text-green-600">九份食樂 (葷素)</a></strong></li>
+                                    <li><strong class="text-green-800"><a href="https://www.google.com/maps/search/?api=1&query=新北市瑞芳區基山街143號" target="_blank" rel="noopener noreferrer" class="underline hover:text-green-600">賴阿婆芋圓</a> / <a href="https://www.google.com/maps/search/?api=1&query=新北市瑞芳區豎崎路5號" target="_blank" rel="noopener noreferrer" class="underline hover:text-green-600">阿柑姨芋圓：</a></strong> 芋圓本身為全素，選擇非奶製配料即可。</li>
+                                    <li><strong class="text-green-800">各式小吃：</strong> 炸杏鮑菇、花生捲冰淇淋、草仔粿 (需確認內餡)。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accommodation Section -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">🏠</span> 住宿資訊
+                        </h3>
+                        <div class="bg-blue-50 p-5 rounded-lg border border-blue-200">
+                             <h4 class="font-bold text-blue-900">
+                                <a href="https://www.google.com/maps/search/?api=1&query=新北市瑞芳區街頂巷41號" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-700 transition-colors">
+                                    九份惠風民宿
+                                </a>
+                             </h4>
+                             <p class="mt-2 text-blue-800">九份地區多為階梯與小巷，建議抵達「九份老街」公車站後，以步行方式前往民宿。由於民宿位置各異，建議您：</p>
+                             <ul class="mt-2 list-disc list-inside text-blue-700 space-y-1">
+                                <li><strong>出發前先與民宿老闆聯繫</strong></li>
+                                
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 Content -->
+            <div id="day2" class="tab-content hidden">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-6">📍 第二天：黃金博物館 → 蘭陽博物館 → 羅東車站</h2>
+                <div class="space-y-8">
+                    <!-- Transportation Section -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">🚗</span> 交通方式
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800">第一段：九份 → 黃金博物館</h4>
+                                 <p class="mt-2 text-slate-600">在「九份老街」站牌搭乘公車 
+                                    <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400078800" target="_blank" rel="noopener noreferrer" class="bus-link">788<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>、
+                                    <a href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=10620&rn=1612169853723" target="_blank" rel="noopener noreferrer" class="bus-link">1062<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>、
+                                    <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?rid=17937&sec=0" target="_blank" rel="noopener noreferrer" class="bus-link">965<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                                 往「金瓜石」方向，車程約 10 分鐘。</p>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800">第二段：黃金博物館 → 蘭陽博物館</h4>
+                                <ol class="mt-2 list-decimal list-inside text-slate-600 space-y-2">
+                                    <li>在「黃金博物館」站牌搭公車 
+                                        <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?routeid=0400078800" target="_blank" rel="noopener noreferrer" class="bus-link">788<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>、
+                                        <a href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=10620&rn=1612169853723" target="_blank" rel="noopener noreferrer" class="bus-link">1062<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>、
+                                        <a href="https://ebus.gov.taipei/EBus/VsSimpleMap?rid=17937&sec=0" target="_blank" rel="noopener noreferrer" class="bus-link">965<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                                    (往基隆方向) 返回「瑞芳車站」。</li>
+                                    <li>從「瑞芳車站」搭乘臺鐵至「頭城車站」。(車程約 40-60 分鐘)</li>
+                                    <li>
+                                        <strong class="text-slate-700">從「頭城車站」前往蘭陽博物館：</strong>
+                                        <ul class="list-['-_'] list-inside ml-4 mt-1 space-y-1">
+                                            <li><strong>公車：</strong>出站後可搭乘 <a href="https://www.taiwantrip.com.tw/line/65?type=runtime" target="_blank" rel="noopener noreferrer" class="bus-link">台灣好行-綠19<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>、<a href="https://ebus.yilan.land/eBus/VsSimpleMap?routeid=1310" target="_blank" rel="noopener noreferrer" class="bus-link">131<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> 或 <a href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=17660" target="_blank" rel="noopener noreferrer" class="bus-link">1766<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> 至「蘭陽博物館」站。</li>
+                                            <li><strong>步行：</strong>沿指標步行約 15-20 分鐘。</li>
+                                            <li><strong>計程車：</strong>站外有排班計程車，車程約 5 分鐘。</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                             <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800">第三段：蘭陽博物館 → 羅東車站</h4>
+                                <ol class="mt-2 list-decimal list-inside text-slate-600 space-y-2">
+                                    <li>從「蘭陽博物館」搭乘公車或計程車返回「頭城車站」。</li>
+                                    <li>從「頭城車站」搭乘臺鐵南下至「羅東車站」。(車程約 20-30 分鐘)</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Food Section -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">🥗</span> 蔬食推薦
+                        </h3>
+                        <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                            <ul class="list-disc list-inside text-green-700 space-y-2">
+                                <li><strong class="text-green-800">黃金博物館周邊：</strong> 建議在九份用完餐再前往，此區選擇較少。</li>
+                                <li><strong class="text-green-800">蘭陽博物館/頭城：</strong>店家資訊待補上。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Accommodation Section -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">🏠</span> 住宿資訊
+                        </h3>
+                        <div class="bg-blue-50 p-5 rounded-lg border border-blue-200">
+                             <h4 class="font-bold text-blue-900">Lai Dua-羅東一個讓你想賴著不走的地方民宿</h4>
+                             <p class="mt-2 text-blue-800">當日行程結束後，您會抵達「羅東車站」，可由此前往民宿：</p>
+                             <ul class="mt-2 list-disc list-inside text-blue-700 space-y-1">
+                                 <li><strong class="text-blue-800">計程車 (建議)：</strong>從羅東車站前站或後站搭乘計程車，告知司機民宿地址，是最方便快速的方式，尤其是有行李時。</li>
+                                 <li><strong class="text-blue-800">公車：</strong>可使用地圖App查詢是否有公車路線可抵達民宿附近，但可能需要步行一段距離。</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 Content -->
+            <div id="day3" class="tab-content hidden">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-6">📍 第三天：傳藝園區 → 羅東車站 (回程)</h2>
+                <div class="space-y-8">
+                    <!-- Transportation Section -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">🚗</span> 交通方式
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800">去程：民宿 → 傳藝中心</h4>
+                                <ol class="mt-2 list-decimal list-inside text-slate-600 space-y-2">
+                                    <li>從民宿搭計程車或步行至「羅東車站」。</li>
+                                    <li>
+                                        <strong class="text-slate-700">前往傳藝中心：</strong>
+                                        <ul class="list-['-_'] list-inside ml-4 mt-1 space-y-1">
+                                            <li><strong>公車：</strong>從羅東火車站(後站)或羅東轉運站搭乘 <a href="https://www.capital-bus.com.tw/image/lineimage.php?imagetest=260" target="_blank" rel="noopener noreferrer" class="bus-link">首都客運-台灣好行冬山河線(綠21)<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>，約30分鐘一班車。</li>
+                                            <li><strong>計程車：</strong>羅東車站前後站皆有排班計程車，車程約15分鐘 (約$200元)。</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800">回程：傳藝中心 → 羅東車站</h4>
+                                <p class="mt-2 text-slate-600">結束行程後，準備搭車賦歸：</p>
+                                <ul class="mt-2 list-['-_'] list-inside text-slate-600 space-y-1">
+                                    <li><strong>公車：</strong>在「國立傳統藝術中心」站牌搭乘 <a href="https://www.capital-bus.com.tw/image/lineimage.php?imagetest=260" target="_blank" rel="noopener noreferrer" class="bus-link">台灣好行冬山河線(綠21)<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> 返回「羅東轉運站」。</li>
+                                    <li><strong>計程車：</strong>園區門口通常有排班計程車可搭乘，可直達羅東車站。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Food Section -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
+                            <span class="text-2xl mr-3">🥗</span> 蔬食推薦
+                        </h3>
+                        <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                             <p class="text-green-800">傳藝園區內？待補充</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Tab Functionality
+        const tabsContainer = document.getElementById('tabs');
+        const tabButtons = tabsContainer.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Function to switch tabs
+        function switchTab(tabId) {
+            // Hide all content
+            tabContents.forEach(content => {
+                content.classList.add('hidden', 'opacity-0');
+            });
+
+            // Deactivate all buttons
+            tabButtons.forEach(button => {
+                button.classList.remove('bg-blue-600', 'text-white');
+                button.classList.add('bg-slate-200', 'text-slate-700', 'hover:bg-slate-300');
+            });
+
+            // Find the target content and button
+            const targetContent = document.getElementById(tabId);
+            const targetButton = tabsContainer.querySelector(`[data-tab="${tabId}"]`);
+
+            // Show the target content
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+                // A small delay to allow the display property to change before starting the transition
+                setTimeout(() => {
+                    targetContent.classList.remove('opacity-0');
+                }, 50);
+            }
+
+            // Activate the target button
+            if (targetButton) {
+                targetButton.classList.add('bg-blue-600', 'text-white');
+                targetButton.classList.remove('bg-slate-200', 'text-slate-700', 'hover:bg-slate-300');
+            }
+        }
+
+        // Add click event listener to the tabs container (event delegation)
+        tabsContainer.addEventListener('click', (event) => {
+            if (event.target.matches('.tab-btn')) {
+                const tabId = event.target.dataset.tab;
+                if (tabId) {
+                    switchTab(tabId);
+                }
+            }
+        });
+
+        // Initialize the first tab as active
+        document.addEventListener('DOMContentLoaded', () => {
+            switchTab('day1');
+        });
+    </script>
+
+</body>
+</html>
